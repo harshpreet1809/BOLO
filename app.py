@@ -30,7 +30,10 @@ def detect_category(text):
 
 def detect_urgency(text):
     lowered = text.lower()
-    for level, phrases in URGENCY_WORDS.items():
+    # Check explicit low-priority phrases first so "not urgent" is not
+    # incorrectly classified as high just because it contains "urgent".
+    for level in ("low", "high", "medium"):
+        phrases = URGENCY_WORDS[level]
         if any(phrase in lowered for phrase in phrases):
             return level
     return "medium"
