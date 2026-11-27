@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10182f">
+  <meta name="description" content="Bolo helps people report everyday civic issues by speaking instead of typing.">
+  <title>Bolo — Speak up. Get things moving.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Bolo home"><span class="brand-mark">b</span><span>bolo<span class="brand-dot">.</span></span></a>
+    <div class="topbar-right"><span class="online-dot"></span><span>VOICE-POWERED CIVIC ACCESS</span><span class="language-pill">ENGLISH</span></div>
+  </header>
+  <main class="shell">
+    <section class="hero">
+      <div class="eyebrow"><span class="sparkle">✳</span> A simpler way to be heard</div>
+      <h1>Speak up.<br><span>Get things moving.</span></h1>
+      <p class="hero-copy">Report everyday neighbourhood issues with your voice. No long forms. No complicated steps. Just tell Bolo what needs attention.</p>
+      <div class="trust-row"><span>✦</span> Built for everyday access <i></i> English voice input <i></i> You stay in control</div>
+    </section>
+    <section class="workspace">
+      <div class="voice-panel">
+        <div class="panel-heading"><div><span class="step-label">STEP 01</span><h2>Tell us what happened</h2></div><span class="mic-status" id="micStatus">READY</span></div>
+        <p class="panel-hint">Press the microphone and describe the issue in your own words.</p>
+        <div class="mic-stage">
+          <div class="sound-orbit orbit-a"></div><div class="sound-orbit orbit-b"></div>
+          <button class="mic-button" id="micButton" type="button" aria-label="Start voice input"><span class="mic-glyph">●</span><span class="mic-lines">▮</span></button>
+          <div class="mic-caption" id="micCaption">Tap to start speaking</div>
+        </div>
+        <div class="transcript-wrap">
+          <div class="transcript-label"><span>YOUR WORDS</span><span id="charCount">0 / 1200</span></div>
+          <textarea id="transcript" maxlength="1200" placeholder="Your spoken words will appear here. You can also type a report..."></textarea>
+        </div>
+        <div class="voice-actions"><button class="button button-primary" id="processButton" type="button">Understand my report <span>↗</span></button><button class="button button-quiet" id="clearButton" type="button">Clear</button></div>
+        <p class="privacy-note"><span>◈</span> Your microphone is only activated when you press the button.</p>
+      </div>
+      <div class="form-panel">
+        <div class="panel-heading"><div><span class="step-label">STEP 02</span><h2>Review your report</h2></div><span class="review-icon">✦</span></div>
+        <p class="panel-hint">Bolo organises what you said. Check everything before confirming.</p>
+        <form id="reportForm">
+          <label for="category">What is the issue?</label>
+          <div class="select-wrap"><select id="category" required><option value="">Choose an issue</option><option value="streetlight">Streetlight not working</option><option value="garbage">Garbage / waste collection</option><option value="water">Water leakage / supply</option><option value="road">Road / pothole damage</option><option value="drainage">Drainage / sewer issue</option><option value="other">Other</option></select><span>⌄</span></div>
+          <label for="location">Where is it happening?</label>
+          <input id="location" type="text" maxlength="180" placeholder="e.g. Near City Park, Sector 12" required>
+          <label for="description">Describe the issue</label>
+          <textarea id="description" class="description-input" maxlength="1200" placeholder="A short description of what needs attention..." required></textarea>
+          <label for="urgency">How urgent is it?</label>
+          <div class="urgency-options"><label class="urgency-option"><input type="radio" name="urgency" value="low"><span>Low</span></label><label class="urgency-option"><input type="radio" name="urgency" value="medium" checked><span>Medium</span></label><label class="urgency-option"><input type="radio" name="urgency" value="high"><span>High</span></label></div>
+          <button class="button button-confirm" id="confirmButton" type="submit">Confirm demo report <span>→</span></button>
+        </form>
+        <p class="demo-note"><span>ⓘ</span> Demo only: no request is sent to a government office.</p>
+      </div>
+    </section>
+    <section class="how-section">
+      <div><span class="step-label">HOW BOLO WORKS</span><h2>From voice to action in three steps.</h2></div>
+      <div class="how-grid"><article><span class="how-number">01</span><h3>Speak naturally</h3><p>Describe a local issue without navigating a complicated form.</p></article><article><span class="how-number">02</span><h3>Review together</h3><p>Bolo organises the details so you can check and correct them.</p></article><article><span class="how-number">03</span><h3>Confirm with confidence</h3><p>Hear a read-back and confirm your demo report.</p></article></div>
+    </section>
+    <footer><a class="brand footer-brand" href="/"><span class="brand-mark">b</span><span>bolo<span class="brand-dot">.</span></span></a><span>A voice-first civic access prototype · Made for India</span><span>Prototype v0.1</span></footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal-backdrop" id="receiptModal" hidden><div class="receipt-card" role="dialog" aria-modal="true" aria-labelledby="receiptTitle"><button class="modal-close" id="closeModal" aria-label="Close">×</button><div class="receipt-check">✓</div><span class="step-label">DEMO CONFIRMATION</span><h2 id="receiptTitle">Your voice has been heard.</h2><p id="receiptMessage">Your demo report has been created.</p><div class="receipt-reference" id="receiptReference"></div><p class="receipt-disclaimer">This is a prototype receipt, not an official municipal complaint number.</p><button class="button button-primary" id="doneButton" type="button">Done</button></div></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
