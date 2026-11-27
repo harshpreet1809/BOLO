@@ -9,7 +9,7 @@ app.config["JSON_SORT_KEYS"] = False
 CATEGORIES = {
     "streetlight": ["streetlight", "street light", "light", "lamp", "dark road"],
     "garbage": ["garbage", "waste", "rubbish", "trash", "dustbin"],
-    "water": ["water leak", "leaking water", "water leakage", "pipe burst", "water supply"],
+    "water": ["water leak", "water is leaking", "leaking water", "water leakage", "pipe burst", "water supply"],
     "road": ["pothole", "road", "broken road", "footpath", "pavement"],
     "drainage": ["drain", "drainage", "sewer", "blocked drain", "overflow"],
     "other": ["other", "something else"]
